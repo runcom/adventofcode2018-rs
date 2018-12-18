@@ -1,7 +1,7 @@
-use std::io::BufReader;
-use std::io::BufRead;
-use std::fs::File;
 use std::collections::HashMap;
+use std::fs::File;
+use std::io::BufRead;
+use std::io::BufReader;
 
 fn main() {
     sol1();
@@ -25,7 +25,7 @@ fn sol1() {
             }
         }
         for (_, count) in &map {
-            if *count == 2  && !twoalready {
+            if *count == 2 && !twoalready {
                 twos += 1;
                 twoalready = true;
             }
@@ -41,11 +41,10 @@ fn sol1() {
 fn sol2() {
     let f = File::open("inputs/2.txt").unwrap();
     let file = BufReader::new(&f);
-    for line in  file.lines() {
+    for line in file.lines() {
         let mut map = HashMap::new();
         let l = line.unwrap();
         for c in l.chars() {
-
             // TODO
 
             let count = map.entry(c).or_insert(0);
