@@ -41,17 +41,28 @@ fn sol1() {
 fn sol2() {
     let f = File::open("inputs/2.txt").unwrap();
     let file = BufReader::new(&f);
+    let mut lines1: Vec<String> = Vec::new();
+    let mut lines2: Vec<String> = Vec::new();
     for line in file.lines() {
-        let mut map = HashMap::new();
-        let l = line.unwrap();
-        for c in l.chars() {
-            // TODO
-
-            let count = map.entry(c).or_insert(0);
-            if *count != 3 {
-                *count += 1;
+        lines1.push(line.unwrap());
+    }
+    for line in &lines1 {
+        lines2.push(line.to_string());
+    }
+    'outer: for l1 in &lines1 {
+        for l2 in &lines2 {
+            let mut diff = 0;
+            let mut i = 0;
+            for x in 0..l2.len() {
+                if &l1.as_bytes()[x] != &l2.as_bytes()[x] {
+                    diff += 1;
+                    i = x;
+                }
+            }
+            if diff == 1 {
+                println!("solution 2: {}{}", &l1[0..i], &l1[i+1..l1.len()]);
+                break 'outer;
             }
         }
     }
-    println!("solution 2: {}", "");
 }
