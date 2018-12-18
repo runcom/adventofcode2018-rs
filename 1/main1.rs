@@ -11,9 +11,9 @@ fn main() {
         let op = l.chars().next().unwrap();
         let num = &l[1..l.len()];
         let n: i32 = num.parse().unwrap();
-        match op {
-            '+' => solution = solution + n,
-            '-' => solution = solution- n,
+        solution = match op {
+            '+' => solution + n,
+            '-' => solution - n,
             _ => panic!("shouldn't happen"),
         };
     }
